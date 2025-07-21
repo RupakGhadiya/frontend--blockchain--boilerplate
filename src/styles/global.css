@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* custom colours  */
+  --color-primary-light: #ffffff;
+  --color-primary-dark: #000000;
+  --color-nav-light: #f3f4f6;
+  --color-nav-dark: #1e2939;
+  --color-background-light: #ffffff;
+  --color-background-dark: #101828;
+
+  --color-midnight: #121063;
+  --color-tahiti-1: #3ab7bf;
+  --color-bermuda: #78dcca;
+
+  --color-primary: #f9a034;
+  --color-secondary: #ffc857;
+  --color-foreground: #ffffff;
+  --color-background: #000000;
+  --color-muted: #b3b3b3;
+  --color-borderColor: #dddddd;
+
+  /* custom breakpoints  */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+
+  /* custom fonts  */
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+@keyframes moveDotLine {
+  0% {
+    background-position-x: -100%;
+  }
+  100% {
+    background-position-x: 0%;
+  }
+}
+
+.animate-moveDotLine {
+  animation: moveDotLine 7s linear infinite;
+}
