@@ -2,14 +2,13 @@
 import { createConfig, createStorage, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors';
-import { BestWalletIcon, MetamaskIcon, WalletConnectIcon } from '../assets/icons/icon';
+import { CoinBaseIcon, MetamaskIcon, WalletConnectIcon } from '../assets/icons/icon';
 // import { environment } from '../environment';
 
 export const WALLET_OPTION = {
 	metaMask: 'metamask',
 	walletConnect: 'walletconnect',
-	desktopBW: 'desktopBW',
-	mobileBW: 'mobileBW',
+	coinBase: 'coinBase',
 };
 
 const metadata = {
@@ -36,13 +35,6 @@ export const uriConnector = walletConnect({
 	projectId: 'e199692e56eced12e2ccaa3c7cde496a'
 });
 
-export const walletConnectorBW = walletConnect({
-	projectId: 'e199692e56eced12e2ccaa3c7cde496a',
-	qrModalOptions: {
-		explorerRecommendedWalletIds: ['fe68cea63541aa53ce020de7398968566dfe8f3725663a564cac89490247ed49']
-	}
-});
-
 export const coinbaseWalletConnector = coinbaseWallet({
 	appName: metadata.name,
 	appLogoUrl: metadata.icons[0]
@@ -59,7 +51,6 @@ export const WAGMI_CONFIG = createConfig({
 	  metaMaskConnector,
 	  coinbaseWalletConnector,
 	  uriConnector,
-	  walletConnectorBW
 	],
 	transports: {
 	  [mainnet.id]: http(),
@@ -69,26 +60,19 @@ export const WAGMI_CONFIG = createConfig({
 
 export const CONNECT_WALLET_OPTIONS = [
 	{
-		name: WALLET_OPTION.mobileBW,
-		Icon: BestWalletIcon,
-		title: 'Best Wallet',
-		isInMobileVisible: true,
-		isInDesktopVisible: false
-	},
-	{
-		name: WALLET_OPTION.desktopBW,
-		Icon: BestWalletIcon,
-		title: 'Best Wallet',
-		isInMobileVisible: false,
-		isInDesktopVisible: true
-	},	
-	{
 		name: WALLET_OPTION.metaMask,
 		Icon: MetamaskIcon,
 		title: 'MetaMask',
 		isInMobileVisible: false,
 		isInDesktopVisible: true
 	},
+	{
+		name: WALLET_OPTION.coinBase,
+		Icon: CoinBaseIcon,
+		title: 'CoinBase',
+		isInMobileVisible: false,
+		isInDesktopVisible: true
+	},	
 	{
 		name: WALLET_OPTION.walletConnect,
 		Icon: WalletConnectIcon,
@@ -101,6 +85,5 @@ export const CONNECT_WALLET_OPTIONS = [
 export const CONNECTOR = {
 	[WALLET_OPTION.metaMask]: metaMaskConnector,
 	[WALLET_OPTION.walletConnect]: walletConnector,
-	[WALLET_OPTION.desktopBW]: walletConnectorBW,
-	[WALLET_OPTION.mobileBW]: uriConnector,
+	[WALLET_OPTION.coinBase]: coinbaseWalletConnector,
 };
